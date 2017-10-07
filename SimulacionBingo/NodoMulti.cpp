@@ -1,0 +1,70 @@
+#include "NodoMulti.h"
+
+// Inicializar variables static
+int NodoMulti::cantidadNodosMulti = 0;
+
+NodoMulti::NodoMulti() {
+	cantidadNodosMulti++;
+
+	int dato = 0;
+	enlaceNorte = nullptr;
+	enlaceEste = nullptr;
+	enlaceSur = nullptr;
+	enlaceOeste = nullptr;
+	cout << this << endl;
+}
+
+NodoMulti::~NodoMulti() {
+	// DESTRUCCION DE LOS ENLACES (WIP)
+	cantidadNodosMulti--;
+}
+
+int NodoMulti::getDato() {
+	return dato;
+}
+
+
+NodoMulti* NodoMulti::getEnlaceNorte() {
+	return enlaceNorte;
+}
+void NodoMulti::setEnlaceNorte(NodoMulti *nodo) {
+	enlaceNorte = nodo;
+}
+
+
+NodoMulti* NodoMulti::getEnlaceEste() {
+	return enlaceEste;
+}
+void NodoMulti::setEnlaceEste(NodoMulti *nodo) {
+	enlaceEste = nodo;
+}
+
+
+NodoMulti* NodoMulti::getEnlaceSur() {
+	return enlaceSur;
+}
+void NodoMulti::setEnlaceSur(NodoMulti *nodo) {
+	enlaceSur = nodo;
+}
+
+
+NodoMulti* NodoMulti::getEnlaceOeste() {
+	return enlaceOeste;
+}
+void NodoMulti::setEnlaceOeste(NodoMulti *nodo) {
+	enlaceOeste = nodo;
+}
+
+int NodoMulti::getCantidadNodos() {
+	return cantidadNodosMulti;
+}
+
+string NodoMulti::toString() {
+	stringstream ss;
+	ss << "Nodo: " << this << endl;
+	ss << "\tNorte: " << enlaceNorte << endl;
+	ss << "\tOeste: " << enlaceOeste << endl;
+	ss << "\tEste:  " << enlaceEste << endl;
+	ss << "\tSur:   " << enlaceSur << endl;
+	return ss.str();
+}
