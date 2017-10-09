@@ -1,4 +1,9 @@
 #include "Matriz.h"
+#include "Numero.h"
+
+Matriz::Matriz() {
+	origen = nullptr;
+}
 
 Matriz::Matriz(int columnas, int filas) {
 	if (columnas <= 0 || filas <= 0) {
@@ -56,11 +61,24 @@ Matriz::Matriz(int columnas, int filas) {
 Matriz::~Matriz() {
 }
 
+int Matriz::get(int x, int y) {
+	NodoMulti *aux = origen;
+	return 0;
+}
+
+NodoMulti* Matriz::operator[](int x) {
+	NodoMulti *aux = origen;
+	int count = 0;
+	while (count < x && aux->getEnlaceEste() != nullptr) {
+		aux = aux->getEnlaceEste();
+		count++;
+	}
+	return &aux[3];
+}
+
 string Matriz::toString() {
+	int x, y = 0;
 	stringstream ss;
-	ss << origen->toString() << endl << endl;
-	ss << origen->getEnlaceEste()->toString() << endl << endl;
-	ss << origen->getEnlaceSur()->toString() << endl << endl;
-	ss << origen->getEnlaceSur()->getEnlaceEste()->toString() << endl << endl;
+	
 	return ss.str();
 }

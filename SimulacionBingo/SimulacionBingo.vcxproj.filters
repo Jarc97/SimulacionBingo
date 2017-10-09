@@ -24,12 +24,24 @@
     <ClCompile Include="Matriz.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Numero.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TableroBingo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="NodoMulti.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Matriz.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Numero.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TableroBingo.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -113,10 +113,14 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Matriz.cpp" />
     <ClCompile Include="NodoMulti.cpp" />
+    <ClCompile Include="Numero.cpp" />
+    <ClCompile Include="TableroBingo.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Matriz.h" />
     <ClInclude Include="NodoMulti.h" />
+    <ClInclude Include="Numero.h" />
+    <ClInclude Include="TableroBingo.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

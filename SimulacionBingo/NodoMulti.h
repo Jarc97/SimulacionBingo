@@ -8,6 +8,8 @@
 #include <iostream>
 #include <sstream>
 
+#include "Numero.h"
+
 using namespace std;
 
 static const int NORTE = 0;
@@ -19,7 +21,7 @@ class NodoMulti {
 private:
 	static int cantidadNodosMulti;
 
-	int dato;
+	Numero *dato;
 	NodoMulti *enlaceNorte;
 	NodoMulti *enlaceEste;
 	NodoMulti *enlaceSur;
@@ -29,7 +31,7 @@ public:
 	~NodoMulti();
 
 	// template <class T> const
-	int getDato();
+	Numero* getDato();
 
 	NodoMulti* getEnlaceNorte();
 	void setEnlaceNorte(NodoMulti*);
@@ -44,6 +46,8 @@ public:
 	void setEnlaceOeste(NodoMulti*);
 
 	static int getCantidadNodos();
+
+	int operator[](int y);
 
 	string toString();
 };

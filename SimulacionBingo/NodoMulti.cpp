@@ -6,7 +6,7 @@ int NodoMulti::cantidadNodosMulti = 0;
 NodoMulti::NodoMulti() {
 	cantidadNodosMulti++;
 
-	int dato = 0;
+	dato = new Numero();
 	enlaceNorte = nullptr;
 	enlaceEste = nullptr;
 	enlaceSur = nullptr;
@@ -19,7 +19,7 @@ NodoMulti::~NodoMulti() {
 	cantidadNodosMulti--;
 }
 
-int NodoMulti::getDato() {
+Numero* NodoMulti::getDato() {
 	return dato;
 }
 
@@ -57,6 +57,16 @@ void NodoMulti::setEnlaceOeste(NodoMulti *nodo) {
 
 int NodoMulti::getCantidadNodos() {
 	return cantidadNodosMulti;
+}
+
+int NodoMulti::operator[](int y) {
+	NodoMulti *aux = this;
+	int count = 0;
+	while (count < y && aux->getEnlaceSur() != nullptr) {
+		aux = aux->getEnlaceSur();
+		count++;
+	}
+	return aux->getDato()->getValor();
 }
 
 string NodoMulti::toString() {
