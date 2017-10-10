@@ -2,6 +2,7 @@
 #include <iostream>
 #include <sstream>
 #include "jugador.h"
+
 using namespace std;
 class jugada
 {

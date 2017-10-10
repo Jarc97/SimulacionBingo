@@ -7,10 +7,10 @@ class jugador{
 private:
 	int numeroJugador;
 	int cantCartones;
-//	matriz **cartones;
+    // Matriz **cartones;
 public:
 	void setNumero(int n);
-	//matriz** getCartones();
+	//Matriz** getCartones();
 
 	int getNumero();
 	string toString();
