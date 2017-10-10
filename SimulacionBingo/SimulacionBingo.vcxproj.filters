@@ -27,6 +27,12 @@
     <ClInclude Include="vista.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="matriz.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="nodoMulti.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="jugador.cpp">
@@ -42,6 +48,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="vista.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="matriz.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="nodoMulti.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

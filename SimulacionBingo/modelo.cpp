@@ -64,6 +64,7 @@ void modelo::procesoMenuPrincipal() {
 }
 void modelo::procesoInicio() {
 	procesoMenuPrincipal();
+
 }
 modelo::~modelo()
 {

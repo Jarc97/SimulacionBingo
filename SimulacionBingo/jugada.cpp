@@ -13,6 +13,7 @@ jugada::jugada(int cantJ, int cantC, int tipoJ)
 
 	for (int i = 0; i < cantJ; i++) {
 		vectorJugadores[i] = new jugador(i+1, (1+(rand() % cantC)));
+		vectorJugadores[i]->toString();
 	}
 }
 
