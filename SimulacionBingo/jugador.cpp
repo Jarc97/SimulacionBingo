@@ -7,11 +7,11 @@ jugador::jugador(int n, int can)
 	numeroJugador = n;
 	cantCartones = can;
 
-	//cartones = new Matriz*[can];
+	cartones = new Matriz*[can];
 
-	/*for (int i = 0; i < can; i++) {
-		cartones[i] = new Matriz(2,2);
-	}*/
+	for (int i = 0; i < can; i++) {
+		cartones[i] = new Matriz(5,5);
+	}
 
 }
 jugador::jugador() {}
@@ -19,9 +19,9 @@ jugador::jugador() {}
 jugador::~jugador()
 {
 }
-/*Matriz** jugador:: getCartones() {
+Matriz** jugador:: getCartones() {
 	return cartones;
-}*/
+}
 
 void jugador::setNumero(int n){
 	numeroJugador = n;
