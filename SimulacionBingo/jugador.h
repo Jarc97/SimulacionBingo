@@ -1,17 +1,16 @@
 #pragma once
 #include <iostream>
 #include <sstream>
-#include "matriz.h"
 using namespace std;
 class jugador{
 
 private:
 	int numeroJugador;
 	int cantCartones;
-	matriz **cartones;
+//	matriz **cartones;
 public:
 	void setNumero(int n);
-	matriz** getCartones();
+	//matriz** getCartones();
 
 	int getNumero();
 	string toString();
