@@ -7,7 +7,7 @@ class jugador{
 private:
 	int numeroJugador;
 	int cantCartones;
-
+	
 public:
 	void setNumero(int n);
 	int getNumero();
