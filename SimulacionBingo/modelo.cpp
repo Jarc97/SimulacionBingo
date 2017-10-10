@@ -5,9 +5,10 @@
 modelo::modelo()
 {
 	simula = new jugada(0,0,0);
+	bingo = false;
 }
 void modelo:: iniciarJugada() {
-	int cantJ = 0, cantMax;
+	int cantJ = 0, cantMax=0;
 	int tipoJ = 0;
 	cout << "Datos Iniciales " << endl;
 	cout << "Digite la cantidad de jugadores ";
@@ -16,6 +17,8 @@ void modelo:: iniciarJugada() {
 	cin >> cantMax;
 	tipoJ = tipoJuego();
 	simula = new jugada(cantJ,cantMax,tipoJ);
+
+	iniciarSimulacion();
 }
 int modelo::tipoJuego() {
 	int opc;
@@ -64,7 +67,19 @@ void modelo::procesoMenuPrincipal() {
 }
 void modelo::procesoInicio() {
 	procesoMenuPrincipal();
-
+	iniciarSimulacion();
+}
+void modelo:: iniciarSimulacion() {
+	int comienzo = 1;
+	int fin= 75;
+	int numero = 0;
+	while (bingo==false) {
+		numero = comienzo + rand() % (fin+1  - 1);
+		cout << numero << endl;
+		if (simula->getGanador() != NULL) {
+			bingo = true;
+		}
+	}
 }
 modelo::~modelo()
 {

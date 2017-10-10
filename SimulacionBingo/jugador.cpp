@@ -10,7 +10,7 @@ jugador::jugador(int n, int can)
 	cartones = new matriz*[can];
 
 	for (int i = 0; i < can; i++) {
-		cartones[i] = new matriz(5,5);
+		cartones[i] = new matriz(2,2);
 	}
 
 }
@@ -32,10 +32,7 @@ int jugador::getNumero() {
 }
 string jugador::toString() {
 	stringstream s;
-	s << "Jugador Numero :" << numeroJugador << endl;
+	s << " Jugador Numero :" << numeroJugador << endl;
 
-	for (int i = 0; i < cantCartones; i++) {
-		s<< cartones[i]->toString() << endl;;
-	}
 	return s.str();
 }

@@ -12,7 +12,7 @@ nodoMulti::nodoMulti() {
 	enlaceEste = nullptr;
 	enlaceSur = nullptr;
 	enlaceOeste = nullptr;
-	cout << this << endl;
+	//cout << this << endl;
 }
 
 nodoMulti::~nodoMulti() {
