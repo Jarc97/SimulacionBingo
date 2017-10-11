@@ -17,6 +17,7 @@ public:
 	jugada(int cantJ, int cantC, int tipoJ);
 	jugador* getGanador();
 	void setGanador(jugador*);
+	bool buscarNumero(int n);
 	~jugada();
 };
 

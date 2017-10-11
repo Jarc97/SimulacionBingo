@@ -22,6 +22,9 @@ jugador* jugada::getGanador() {
 void jugada::setGanador(jugador* j) {
 	ganador = j;
 }
+bool jugada::buscarNumero(int n) {
+	return true;
+}
 jugada::~jugada()
 {
 }

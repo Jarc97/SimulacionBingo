@@ -69,16 +69,32 @@ void modelo::procesoInicio() {
 	procesoMenuPrincipal();
 	iniciarSimulacion();
 }
-void modelo:: iniciarSimulacion() {
+void modelo:: iniciarSimulacion() { 
+	int cant = 0;
+	int esfera[75];
+	
+	
 	int comienzo = 1;
 	int fin= 75;
 	int numero = 0;
-	while (bingo==false) {
+	for (int lop = 0; lop < 45;lop++) {
+		
 		numero = comienzo + rand() % (fin+1  - 1);
-		cout << numero << endl;
+		if (lop > 0) {
+			for (int m = 0; m < 75; m++) {
+				if (numero == esfera[m]) {
+					numero = comienzo + rand() % (fin + 1 - 1);
+					
+				}
+			}
+		}
+		simula->buscarNumero(numero);
 		if (simula->getGanador() != NULL) {
 			bingo = true;
 		}
+		esfera[cant++] = numero;
+		pilaNumeros.Poner(numero);
+		cout << numero << endl;
 	}
 }
 modelo::~modelo()

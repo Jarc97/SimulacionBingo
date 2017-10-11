@@ -116,6 +116,7 @@
     <ClInclude Include="jugada.h" />
     <ClInclude Include="NodoMulti.h" />
     <ClInclude Include="Numero.h" />
+    <ClInclude Include="Pila.h" />
     <ClInclude Include="TableroBingo.h" />
     <ClInclude Include="vista.h" />
   </ItemGroup>
