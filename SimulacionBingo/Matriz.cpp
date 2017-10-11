@@ -3,9 +3,15 @@
 
 Matriz::Matriz() {
 	origen = nullptr;
+	tipoJuego = 0;
+	marcados = 0;
+	completo = false;
 }
 
 Matriz::Matriz(int columnas, int filas) {
+	tipoJuego = 0;
+	marcados = 0;
+	completo = false;
 	this->columnas = columnas;
 	this->filas = filas;
 
@@ -89,7 +95,46 @@ bool Matriz::operator()(int columna, int fila, int num) {
 	// modificar el dato
 	actual->getDato()->setValor(num);
 }
-
+void Matriz::llenarPorFila(int fil, int inicio, int final) {
+	int bing[5];
+	for (int i = 0; i < columnas; i++) {
+		(*this)(fil, i)->setValor(inicio + rand() % (final + 1 - inicio));
+		if (i > 1) {
+			for (int k = 0; k < 5; k++) {
+				if (bing[k] == (*this)(fil, i)->getValor()) {
+					(*this)(fil, i)->setValor(inicio + rand() % (final + 1 - inicio));
+				}
+			}
+		}
+		bing[i] = (*this)(fil, i)->getValor();
+	}
+	ordenar(fil,0,4);
+}
+void Matriz::ordenar(int fil,int izq, int der) {
+	int i, j; /* variables indice del vector */
+	int elem; /* contiene un elemento del vector */
+	i = izq;
+	j = der;
+	elem = (*this)(fil, (izq+der)/2)->getValor();
+	do
+	{
+		while ((*this)(fil, i)->getValor() < elem) //recorrido del vector hacia la derecha
+			i++;
+		while (elem < (*this)(fil, j)->getValor()) // recorrido del vector hacia la izquierda
+			j--;
+		if (i <= j) /* intercambiar */
+		{
+			int aux; /* variable auxiliar */
+			aux = (*this)(fil, i)->getValor();
+			(*this)(fil, i)->setValor((*this)(fil, j)->getValor());
+			(*this)(fil, j)->setValor(aux);
+			i++;
+			j--;
+		}
+	} while (i <= j);
+	if (izq < j) { ordenar(fil, izq, j); } //Llamadas recursivas
+	if (i < der) { ordenar(fil, i, der); }
+}
 Numero* Matriz::operator()(int columna, int fila) {
 	NodoMulti *actual = origen;
 	// Iterar sobre las columnas (Este)
@@ -117,17 +162,98 @@ Numero* Matriz::operator()(int columna, int fila) {
 	}
 	return nullptr;
 }
-
+void Matriz::llenar() {
+	
+	llenarPorFila(0,1,15);
+	llenarPorFila(1,16,30);
+	llenarPorFila(2,31,45);
+	llenarPorFila(3,46,60);
+	llenarPorFila(4,61,75);
+	
+}
 string Matriz::toString() {
 	Numero *n = nullptr;
 	stringstream ss;
 	
 	for (int i = 0; i < columnas; i++) {
 		for (int j = 0; j < filas; j++) {
-			ss << (*this)(j, i)->getValor() << " ";
+			if ((*this)(j, i)->getMarcado()==true) {
+				ss << "{"<< (*this)(j, i)->getValor()<<"}" << " ";
+			}
+			else {
+				ss << (*this)(j, i)->getValor() << " ";
+			}
 		}
 		ss << endl;
 	}
 
 	return ss.str();
+}
+
+
+void Matriz::setTipoJuego(int j) {
+	tipoJuego = j;
+}
+void Matriz::buscarSegunHorizontal(int num) {
+	for (int i = 0; i < filas; i++) {
+		if ((*this)(i, 0)->getValor() == num) {
+			(*this)(i, 0)->setMarcado(true);
+			marcados++;
+		}
+	}
+	if (marcados == 5) {
+		setCompleto(true);
+	}
+}
+bool Matriz::getCompleto() {
+	return completo;
+}
+void Matriz::setCompleto( bool m) {
+	completo = m;
+}
+void Matriz::buscarSegunVertical(int num) {
+	for (int i = 0; i < columnas; i++) {
+		if ((*this)(0, i)->getValor() == num) {
+			(*this)(0, i)->setMarcado(true);
+			marcados++;
+		}
+	}
+	if (marcados == 5) {
+		setCompleto(true);
+	}
+}
+void Matriz::buscarSegunDiagonal(int num) {}
+void Matriz::buscarSegunC(int num) {}
+void Matriz::buscarSegunX(int num) {}
+void Matriz::buscarSegunU(int num) {}
+void Matriz::buscarSegunO(int num) {}
+void Matriz::buscarSegunBingo(int num) {}
+void Matriz::busqueda(int num) {
+	switch (tipoJuego)
+	{
+	case 1:
+		buscarSegunHorizontal(num);
+		break;
+	case 2:
+		buscarSegunVertical(num);
+		break;
+	case 3:
+		buscarSegunDiagonal(num);
+		break;
+	case 4:
+		buscarSegunC(num);
+		break;
+	case 5:
+		buscarSegunX(num);
+		break;
+	case 6:
+		buscarSegunU(num);
+		break;
+	case 7:
+		buscarSegunO(num);
+		break;
+	case 8:
+		buscarSegunBingo(num);
+		break;
+	}
 }

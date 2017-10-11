@@ -14,10 +14,12 @@ private:
 	jugador **vectorJugadores;
 	jugador* ganador;
 public:
+	string toString();
+	void buscar(int num);
 	jugada(int cantJ, int cantC, int tipoJ);
 	jugador* getGanador();
+	bool hayGanador();
 	void setGanador(jugador*);
-	bool buscarNumero(int n);
 	~jugada();
 };
 

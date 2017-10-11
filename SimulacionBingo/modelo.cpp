@@ -17,7 +17,7 @@ void modelo:: iniciarJugada() {
 	cin >> cantMax;
 	tipoJ = tipoJuego();
 	simula = new jugada(cantJ,cantMax,tipoJ);
-
+	cout << "Iniciando Simulacion" << endl;
 	iniciarSimulacion();
 }
 int modelo::tipoJuego() {
@@ -67,35 +67,39 @@ void modelo::procesoMenuPrincipal() {
 }
 void modelo::procesoInicio() {
 	procesoMenuPrincipal();
-	iniciarSimulacion();
 }
 void modelo:: iniciarSimulacion() { 
 	int cant = 0;
-	int esfera[75];
+	int esfera[1500];
 	
 	
 	int comienzo = 1;
 	int fin= 75;
 	int numero = 0;
-	for (int lop = 0; lop < 45;lop++) {
+	int lop = 0;
+	while(lop<100) {
 		
 		numero = comienzo + rand() % (fin+1  - 1);
 		if (lop > 0) {
-			for (int m = 0; m < 75; m++) {
+			for (int m = 0; m < cant; m++) {
 				if (numero == esfera[m]) {
 					numero = comienzo + rand() % (fin + 1 - 1);
 					
 				}
 			}
 		}
-		simula->buscarNumero(numero);
-		if (simula->getGanador() != NULL) {
-			bingo = true;
-		}
+		simula->buscar(numero);
 		esfera[cant++] = numero;
 		pilaNumeros.Poner(numero);
 		cout << numero << endl;
+		cout << simula->toString() << endl;
+		lop++;
+		if (simula->hayGanador() == true) {
+			bingo = true;
+		}
 	}
+	
+
 }
 modelo::~modelo()
 {

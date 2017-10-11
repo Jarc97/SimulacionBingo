@@ -6,7 +6,8 @@ private:
 public:
 	Numero();
 	~Numero();
-
+	void setMarcado(bool);
+	bool getMarcado();
 	void setValor(int);
 	int getValor();
 };
