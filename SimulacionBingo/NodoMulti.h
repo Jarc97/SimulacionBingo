@@ -47,8 +47,6 @@ public:
 
 	static int getCantidadNodos();
 
-	int operator[](int y);
-
 	string toString();
 };
 

@@ -23,7 +23,6 @@ Numero* NodoMulti::getDato() {
 	return dato;
 }
 
-
 NodoMulti* NodoMulti::getEnlaceNorte() {
 	return enlaceNorte;
 }
@@ -57,16 +56,6 @@ void NodoMulti::setEnlaceOeste(NodoMulti *nodo) {
 
 int NodoMulti::getCantidadNodos() {
 	return cantidadNodosMulti;
-}
-
-int NodoMulti::operator[](int y) {
-	NodoMulti *aux = this;
-	int count = 0;
-	while (count < y && aux->getEnlaceSur() != nullptr) {
-		aux = aux->getEnlaceSur();
-		count++;
-	}
-	return aux->getDato()->getValor();
 }
 
 string NodoMulti::toString() {
