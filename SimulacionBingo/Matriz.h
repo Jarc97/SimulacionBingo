@@ -7,6 +7,7 @@ class Numero;
 class Matriz {
 private:
 	NodoMulti *origen;
+	int columnas, filas;
 public:
 	Matriz();
 	Matriz(int columnas, int filas);

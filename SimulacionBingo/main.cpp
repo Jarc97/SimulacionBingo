@@ -10,13 +10,14 @@ int main() {
 	
 	Matriz *m = new Matriz(5, 5);
 	cout << NodoMulti::getCantidadNodos() << endl;
-	cout << m->toString() << endl;
+	
+
 
 	//Matriz &mm = *m;
 	//mm(1, 1);
-	
+
 	//m->operator()(2, 3);
-	
+
 
 	// Toda la matriz empieza con datos en 0
 	// Poner un 9 en la posicion (0,0)
@@ -24,6 +25,8 @@ int main() {
 	// Obtener el numero guardado en 0,0
 	Numero *num = (*m)(0, 0);
 	cout << num->getValor() << endl;
+
+	cout << m->toString() << endl;
 
 	system("PAUSE");
 	return 0;

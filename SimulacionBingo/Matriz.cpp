@@ -6,6 +6,9 @@ Matriz::Matriz() {
 }
 
 Matriz::Matriz(int columnas, int filas) {
+	this->columnas = columnas;
+	this->filas = filas;
+
 	if (columnas <= 0 || filas <= 0) {
 		return;
 	}
@@ -116,8 +119,15 @@ Numero* Matriz::operator()(int columna, int fila) {
 }
 
 string Matriz::toString() {
-	int x, y = 0;
+	Numero *n = nullptr;
 	stringstream ss;
 	
+	for (int i = 0; i < columnas; i++) {
+		for (int j = 0; j < filas; j++) {
+			ss << (*this)(j, i)->getValor() << " ";
+		}
+		ss << endl;
+	}
+
 	return ss.str();
 }
