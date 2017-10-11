@@ -61,19 +61,58 @@ Matriz::Matriz(int columnas, int filas) {
 Matriz::~Matriz() {
 }
 
-int Matriz::get(int x, int y) {
-	NodoMulti *aux = origen;
-	return 0;
+bool Matriz::operator()(int columna, int fila, int num) {
+	NodoMulti *actual = origen;
+	// Iterar sobre las columnas (Este)
+	for (int i = 0; i < columna; i++) {
+		if (actual->getEnlaceEste() != nullptr) {
+			actual = actual->getEnlaceEste();
+		}
+		else {
+			return false;		// fuera de limite
+		}
+	}
+
+	// Iterar sobre las filas (Sur)
+	for (int j = 0; j < fila; j++) {
+		if (actual->getEnlaceSur() != nullptr) {
+			actual = actual->getEnlaceSur();
+		}
+		else {
+			return false;		// fuera de limite
+		}
+	}
+
+	// modificar el dato
+	actual->getDato()->setValor(num);
 }
 
-NodoMulti* Matriz::operator[](int x) {
-	NodoMulti *aux = origen;
-	int count = 0;
-	while (count < x && aux->getEnlaceEste() != nullptr) {
-		aux = aux->getEnlaceEste();
-		count++;
+Numero* Matriz::operator()(int columna, int fila) {
+	NodoMulti *actual = origen;
+	// Iterar sobre las columnas (Este)
+	for (int i = 0; i < columna; i++) {
+		if (actual->getEnlaceEste() != nullptr) {
+			actual = actual->getEnlaceEste();
+		}
+		else {
+			return nullptr;		// fuera de limite
+		}
 	}
-	return &aux[3];
+
+	// Iterar sobre las filas (Sur)
+	for (int j = 0; j < fila; j++) {
+		if (actual->getEnlaceSur() != nullptr) {
+			actual = actual->getEnlaceSur();
+		}
+		else {
+			return nullptr;		// fuera de limite
+		}
+	}
+	
+	if (actual) {
+		return actual->getDato();
+	}
+	return nullptr;
 }
 
 string Matriz::toString() {
