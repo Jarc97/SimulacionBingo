@@ -12,6 +12,7 @@ class modelo
 	jugada* simula;
 	bool bingo;
 public:
+	bool existeGanador();
 	void iniciarJugada();
 	void verJugadas();
 	void iniciarSimulacion();

@@ -197,11 +197,15 @@ void Matriz::setTipoJuego(int j) {
 void Matriz::buscarSegunHorizontal(int num) {
 	for (int i = 0; i < filas; i++) {
 		if ((*this)(i, 0)->getValor() == num) {
-			(*this)(i, 0)->setMarcado(true);
+			(*this)(i, 0)->setMarcado(true);	
+		}
+	}
+	for (int i = 0; i < filas; i++) {
+		if ((*this)(i, 0)->getMarcado() == true) {
 			marcados++;
 		}
 	}
-	if (marcados == 5) {
+	if (marcados==5) {
 		setCompleto(true);
 	}
 }

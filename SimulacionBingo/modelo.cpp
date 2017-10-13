@@ -70,36 +70,41 @@ void modelo::procesoInicio() {
 }
 void modelo:: iniciarSimulacion() { 
 	int cant = 0;
-	int esfera[1500];
+	int esfera[75];
 	
 	
 	int comienzo = 1;
 	int fin= 75;
 	int numero = 0;
 	int lop = 0;
-	while(lop<100) {
-		
-		numero = comienzo + rand() % (fin+1  - 1);
+	do {
+		numero = comienzo + rand() % (fin + 1 - comienzo);
 		if (lop > 0) {
 			for (int m = 0; m < cant; m++) {
 				if (numero == esfera[m]) {
-					numero = comienzo + rand() % (fin + 1 - 1);
-					
+					numero = comienzo + rand() % (fin + 1 - comienzo);
+
 				}
 			}
 		}
+		cout << "Buscando" << endl;
 		simula->buscar(numero);
 		esfera[cant++] = numero;
 		pilaNumeros.Poner(numero);
-		cout << numero << endl;
-		cout << simula->toString() << endl;
 		lop++;
-		if (simula->hayGanador() == true) {
-			bingo = true;
-		}
+		
+	} while (!existeGanador());
+}
+bool modelo::existeGanador() {
+	bool op = false;
+	if (simula->hayGanador() == true) {
+		op = true;
 	}
-	
+	else {
+		op = false;
 
+	}
+	return op;
 }
 modelo::~modelo()
 {
