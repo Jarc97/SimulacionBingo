@@ -11,6 +11,7 @@ public:
 	static void ventanaBuscNumero(int num);
 	static void serJugador(int nom);
 	static void mostrarGanador(int,string, string);
+	static int tipoJuego();
 	vista();
 	~vista();
 };

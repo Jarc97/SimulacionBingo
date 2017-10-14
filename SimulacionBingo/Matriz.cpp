@@ -176,10 +176,10 @@ string Matriz::toString() {
 	for (int i = 0; i < columnas; i++) {
 		for (int j = 0; j < filas; j++) {
 			if ((*this)(j, i)->getMarcado()==true) {
-				ss << "{"<< (*this)(j, i)->getValor()<<"}" << " ";
+				ss << "{"<< (*this)(j, i)->getValor()<<"}" << "  ";
 			}
 			else {
-				ss << (*this)(j, i)->getValor() << " ";
+				ss << (*this)(j, i)->getValor() << "  ";
 			}
 		}
 		ss << endl;

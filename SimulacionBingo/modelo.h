@@ -23,7 +23,6 @@ public:
 	bool ganador();
 	void iniciarSimulacion();
 	void procesoInicio();
-	int tipoJuego();
 	void procesoMenuPrincipal();
 	modelo();
 	~modelo();

@@ -6,10 +6,8 @@ using namespace std;
 template<class T>
 class Lista {
 public:
-
-	Lista();
-
 	virtual int numElementos() const;
+	Lista();
 	virtual void agregar(T*);
 	bool estaVacia() const;
 	virtual std::string toString() const;
@@ -55,7 +53,7 @@ string Lista<T>::toString() const {
 	stringstream r;
 	Nodo<T>* cursor = primero;
 	while (cursor != NULL) {
-		r << cursor->toString();
+		r <<"Jugada "<<numElementos()<<" "<< cursor->toString();
 		if ((cursor = cursor->siguiente()) != NULL) {
 			r << "  " << endl;
 		}
