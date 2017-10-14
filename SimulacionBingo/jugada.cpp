@@ -65,8 +65,11 @@ void jugada::setGanador(jugador* j) {
 
 string jugada::toString() {
 	stringstream s;
-	for (int i = 0; i < cantJugadores; i++) {
-		s << vectorJugadores[i]->toString() << endl;
+	if (this->getGanador() != NULL) {
+		s <<"Jugador ganador , Numero "<< ganador->getNumero()<<endl;
+	}
+	else {
+		s << "sin ganador " << endl;
 	}
 	return s.str();
 }

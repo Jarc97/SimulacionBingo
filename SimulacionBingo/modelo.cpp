@@ -4,6 +4,8 @@
 
 modelo::modelo()
 {
+	pilaNumeros = new Pila<int>();
+	listaJugadas = new Lista<jugada>;
 	simula = new jugada(0,0,0);
 	bingo = false;
     this->Jganador= NULL;
@@ -20,6 +22,7 @@ void modelo:: iniciarJugada() {
 	cin >> cantMax;
 	tipoJ = tipoJuego();
 	simula = new jugada(cantJ,cantMax,tipoJ);
+	listaJugadas->agregar(simula);
 	iniciarSimulacion();
 }
 
@@ -47,6 +50,7 @@ int modelo::tipoJuego() {
 	return opc;
 }
 void modelo::verJugadas() {
+	cout << listaJugadas->toString() << endl;
 }
 void modelo::procesoMenuPrincipal() {
 	system("cls");
@@ -119,15 +123,21 @@ void modelo::iniciarSimulacion() {
 		
 		simula->buscar(numero);
 		vista::ventanaBuscNumero(numero);
-		pilaNumeros.Poner(numero);
+		pilaNumeros->Poner(numero);
 		
 		cout << simula->toString() << endl;
 		system("pause");
+		if (ganador() == true) {
+			system("cls");
+			cout << endl << endl << endl << endl << endl << endl;
+			cout << "                 ¡ BINGO !                             " << endl;
+			system("pause");
+		}
 	}
 	
 	if (ganador() == true) {
 		system("cls");
-		vista::mostrarGanador(this->Jganador->getNumero(), this->cartonGanador->toString(),pilaNumeros.toString());
+		vista::mostrarGanador(this->Jganador->getNumero(), this->cartonGanador->toString(),pilaNumeros->toString());
 		cout << "BINGO !!" << endl;
 		system("pause");
 		procesoMenuPrincipal();

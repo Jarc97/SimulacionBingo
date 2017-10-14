@@ -111,9 +111,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="jugador.h" />
+    <ClInclude Include="Lista.h" />
     <ClInclude Include="Matriz.h" />
     <ClInclude Include="modelo.h" />
     <ClInclude Include="jugada.h" />
+    <ClInclude Include="nodo.h" />
     <ClInclude Include="NodoMulti.h" />
     <ClInclude Include="Numero.h" />
     <ClInclude Include="Pila.h" />
