@@ -2,6 +2,7 @@
 
 #include "NodoMulti.h";
 
+using namespace std;
 class Numero;
 
 class Matriz {
@@ -36,7 +37,7 @@ public:
 	void buscarSegunVertical(int num);
 	void buscarSegunDiagonal(int num);
 	void buscarSegunC(int num);
-	void buscarSegunX(int num);
+	void buscarEquis(int num );
 	void buscarSegunU(int num);
 	void buscarSegunO(int num);
 	void buscarSegunBingo(int num);

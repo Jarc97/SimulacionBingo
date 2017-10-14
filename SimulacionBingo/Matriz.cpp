@@ -195,12 +195,14 @@ void Matriz::setTipoJuego(int j) {
 void Matriz::buscarSegunHorizontal(int num) {
 	
 	for (int i = 0; i < filas; i++) {
-		if ((*this)(i, 0)->getValor() == num) {
-			(*this)(i, 0)->setMarcado(true);
-			marcados++;
+		for (int j = 0; j < columnas; j++) {
+			if ((*this)(i, j)->getValor() == num) {
+				(*this)(i, j)->setMarcado(true);
+				marcados++;
+			}
 		}
 	}
-	if (marcados == 5) {
+	if (marcados == 25) {
 		this->SetJuegoCompletado(true);
 	}
 }
@@ -211,16 +213,15 @@ void Matriz::SetJuegoCompletado(bool m) {
 	juegoCompletado = m;
 }
 void Matriz::buscarSegunVertical(int num) {
-	
-	for (int i = 0; i < columnas; i++) {
-		if ((*this)(0, i)->getValor() == num) {
-			(*this)(0, i)->setMarcado(true);
-			marcados++;
+	for (int i = 0; i < filas; i++) {
+		for (int j = 0; j < columnas; j++) {
+			if ((*this)(i, j)->getValor() == num) {
+				(*this)(i, j)->setMarcado(true);
+				marcados++;
+			}
 		}
 	}
-	if (marcados == 5) {
-		this->SetJuegoCompletado(true);
-	}
+	
 }
 void Matriz::buscarSegunDiagonal(int num) {
 	
@@ -261,10 +262,10 @@ void Matriz::buscarSegunC(int num) {
 		this->SetJuegoCompletado(true);
 	}
 }
-void Matriz::buscarSegunX(int num) {
-	for (int i = 0; i < filas;i++) {
-		if ((*this)(i,i)->getValor() == num) {
-			(*this)(i,i)->setMarcado(true);
+void Matriz::buscarEquis(int num) {
+	for (int i = 0; i < filas; i++) {
+		if ((*this)(i, i)->getValor() == num) {
+			(*this)(i, i)->setMarcado(true);
 			marcados++;
 		}
 	}
@@ -275,12 +276,13 @@ void Matriz::buscarSegunX(int num) {
 				marcados++;
 			}
 		}
-		
+
 	}
 	if (marcados == 9) {
 		this->SetJuegoCompletado(true);
 	}
 }
+
 void Matriz::buscarSegunU(int num) {
 	for (int i = 0; i < columnas;i++) {
 		if ((*this)(0, i)->getValor() == num) {
@@ -348,31 +350,32 @@ void Matriz::buscarSegunBingo(int num) {
 }
 
 void Matriz::busqueda(int num) {
+	
 	switch (tipoJuego)
 	{
 	case 1:
-		buscarSegunHorizontal(num);
+		this->buscarSegunHorizontal(num);
 		break;
 	case 2:
-		buscarSegunVertical(num);
+		this->buscarSegunVertical(num);
 		break;
 	case 3:
-		buscarSegunDiagonal(num);
+		this->buscarSegunDiagonal(num);
 		break;
 	case 4:
-		buscarSegunC(num);
+		this->buscarSegunC(num);
 		break;
 	case 5:
-		buscarSegunX(num);
+		this->buscarEquis(num); 
 		break;
 	case 6:
-		buscarSegunU(num);
+		this->buscarSegunU(num);
 		break;
 	case 7:
-		buscarSegunO(num);
+		this->buscarSegunO(num);
 		break;
 	case 8:
-		buscarSegunBingo(num);
+		this->buscarSegunBingo(num);
 		break;
 	}
 }
