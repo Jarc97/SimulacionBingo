@@ -8,6 +8,7 @@ private:
 	int nelementos;
 	T* vec;
 	int limite;
+	int cantidad;
 public:
 	Pila(int nelem = 75); //Constructor
 	bool Poner(const T& valorInsertado);
@@ -21,6 +22,7 @@ public:
 
 template<class T>
 Pila<T>::Pila(int nelem= 75) {
+	cantidad = 0;
 	nelementos = nelem;
 	limite = -1;
 	vec = new T[nelementos];
@@ -30,6 +32,7 @@ template<class T> //Push(...)
 bool Pila<T>::Poner(const T& valorInsertado) {
 	if (!Llena()) {
 		vec[++limite] = valorInsertado;
+		cantidad++;
 		return true;
 	}
 	else
@@ -40,6 +43,7 @@ template<class T> //Pop(...)
 bool Pila<T>::Sacar(T& valorExtraido) {
 	if (!Vacia()) {
 		valorExtraido = vec[limite--];
+		cantidad--;
 		return true;
 	}
 	else
@@ -64,8 +68,9 @@ T& Pila<T>::Top() {
 template<class T>
 string Pila<T>::toString() {
 	stringstream s;
-	for (int i = 0; i < nelementos; i++) {
-		s << vec[i] << endl;
+	for (int i = cantidad-1; i >= 0; i--) {
+		s << "_________" << endl;
+		s <<vec[i]<< endl;
 	}
 	return s.str();
 }

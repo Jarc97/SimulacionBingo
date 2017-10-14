@@ -5,6 +5,7 @@ Matriz::Matriz() {
 	origen = nullptr;
 	tipoJuego = 0;
 	juegoCompletado = false;
+	marcados = 0;
 }
 
 Matriz::Matriz(int columnas, int filas) {
@@ -192,14 +193,14 @@ void Matriz::setTipoJuego(int j) {
 	tipoJuego = j;
 }
 void Matriz::buscarSegunHorizontal(int num) {
-	int m = 0;
+	
 	for (int i = 0; i < filas; i++) {
 		if ((*this)(i, 0)->getValor() == num) {
 			(*this)(i, 0)->setMarcado(true);
-			m++;
+			marcados++;
 		}
 	}
-	if (m == 5) {
+	if (marcados == 5) {
 		this->SetJuegoCompletado(true);
 	}
 }
@@ -210,72 +211,141 @@ void Matriz::SetJuegoCompletado(bool m) {
 	juegoCompletado = m;
 }
 void Matriz::buscarSegunVertical(int num) {
-	int m = 0;
+	
 	for (int i = 0; i < columnas; i++) {
 		if ((*this)(0, i)->getValor() == num) {
 			(*this)(0, i)->setMarcado(true);
-			m++;
+			marcados++;
 		}
 	}
-	if (m == 5) {
+	if (marcados == 5) {
 		this->SetJuegoCompletado(true);
 	}
 }
 void Matriz::buscarSegunDiagonal(int num) {
-	int m = 0;
+	
 	for (int i = 0; i < filas;i++) {
 		if ((*this)(i, i)->getValor() == num) {
 			(*this)(i, i)->setMarcado(true);
-			m++;
+			marcados++;
 		}
 	}
-	if (m == 5) {
+	if (marcados == 5) {
 		this->SetJuegoCompletado(true);
 	}
 }
 void Matriz::buscarSegunC(int num) {
-	int m = 0;
 	for (int i = 0; i < columnas;i++) {
-		if ((*this)(i, 0)->getValor() == num|| (*this)(0,i)->getValor() == num) {
-			(*this)(i, i)->setMarcado(true);
-			m++;
+		if ((*this)(i, 0)->getValor() == num) {
+			(*this)(i, 0)->setMarcado(true);
+			marcados++;
 		}
 		
+		
 	}
+	for (int i = 1; i < 4; i++) {
+		if ((*this)(0, i)->getValor() == num) {
+			(*this)(0, i)->setMarcado(true);
+			marcados++;
+		}
+	}
+		
+	
 	for (int k = 0; k < columnas; k++) {
 		if ((*this)(k,4)->getValor() == num ) {
 			(*this)(k, 4)->setMarcado(true);
-			m++;
+			marcados++;
 		}
 	}
-	if (m == 13) {
+	if (marcados == 13) {
 		this->SetJuegoCompletado(true);
 	}
 }
 void Matriz::buscarSegunX(int num) {
-	int m = 0;
 	for (int i = 0; i < filas;i++) {
 		if ((*this)(i,i)->getValor() == num) {
 			(*this)(i,i)->setMarcado(true);
-			m++;
+			marcados++;
 		}
 	}
 	for (int k = 0; k < filas; k--) {
 		for (int j = 0; j < columnas; j++) {
 			if ((*this)(k, j)->getValor() == num) {
 				(*this)(k, j)->setMarcado(true);
-				m++;
+				marcados++;
 			}
 		}
 		
 	}
-	if (m == 9) {
+	if (marcados == 9) {
 		this->SetJuegoCompletado(true);
 	}
 }
-void Matriz::buscarSegunU(int num) {}
-void Matriz::buscarSegunO(int num) {}
-void Matriz::buscarSegunBingo(int num) {}
+void Matriz::buscarSegunU(int num) {
+	for (int i = 0; i < columnas;i++) {
+		if ((*this)(0, i)->getValor() == num) {
+			(*this)(0, i)->setMarcado(true);
+			marcados++;
+		}
+	}
+	for (int i = 0; i < columnas; i++) {
+		if ((*this)(4, i)->getValor() == num) {
+			(*this)(4, i)->setMarcado(true);
+			marcados++;
+		}
+	}
+	for (int k = 1; k < 4; k++) {
+		if ((*this)(k, 4)->getValor() == num) {
+			(*this)(k, 4)->setMarcado(true);
+			marcados++;
+		}
+	}
+	if (marcados == 13) {
+		this->SetJuegoCompletado(true);
+	}
+}
+void Matriz::buscarSegunO(int num) {
+	for (int k = 1; k < 4; k++) {
+		if ((*this)(k, 0)->getValor() == num) {
+			(*this)(k, 0)->setMarcado(true);
+			marcados++;
+		}
+	}
+	for (int i = 0; i < columnas; i++) {
+		if ((*this)(0, i)->getValor() == num) {
+			(*this)(0, i)->setMarcado(true);
+			marcados++;
+		}
+	}
+	for (int i = 0; i < columnas; i++) {
+		if ((*this)(4, i)->getValor() == num) {
+			(*this)(4, i)->setMarcado(true);
+			marcados++;
+		}
+	}
+	for (int k = 1; k < 4; k++) {
+		if ((*this)(k, 4)->getValor() == num) {
+			(*this)(k, 4)->setMarcado(true);
+			marcados++;
+		}
+	}
+	if (marcados == 16) {
+		this->SetJuegoCompletado(true);
+	}
+}
+void Matriz::buscarSegunBingo(int num) {
+	for (int i = 0; i < filas;i++) {
+		for (int j = 0; j < columnas; j++) {
+			if ((*this)(i, j)->getValor() == num) {
+				(*this)(i, j)->setMarcado(true);
+				marcados++;
+			}
+		}
+	}
+	if (marcados == 25) {
+		this->SetJuegoCompletado(true);
+	}
+}
 
 void Matriz::busqueda(int num) {
 	switch (tipoJuego)

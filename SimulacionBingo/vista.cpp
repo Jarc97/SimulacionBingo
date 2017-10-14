@@ -25,12 +25,19 @@ int vista::menuPrincipal() {
 	}
 	return opc;
 }
-void vista::mostrarGanador(int numeroG, string carton) {
-	cout << "Ganador" << endl;
-	cout << numeroG << endl<<endl;
-
-	cout << "Carton Ganador" << endl;
-	cout << carton << endl;
+void vista::mostrarGanador(int numeroG, string carton ,string pila) {
+	cout << " ________________" << endl;
+	cout << "|Ganador Numero  |" << endl;
+	cout << "|"  << numeroG <<"             |" << endl;
+	cout << "|________________|" << endl<<endl;
+	cout << " ________________" << endl;
+	cout << "| Carton Ganador |" << endl;
+	cout << "|________________|" << endl;
+	cout << carton << endl<<endl;
+	cout << " _____________________" << endl;
+	cout << "|Numeros que salieron |" << endl;
+	cout << "|_____________________|" << endl;
+	cout << pila << endl;
 }
 void vista::serJugador(int n) {
 	cout << "==========================" << endl;
@@ -40,7 +47,7 @@ void vista::serJugador(int n) {
 void vista::ventanaBuscNumero(int num) {
 	cout << "-------------------------------------" << endl;
 	cout << " ________________" << endl;
-	cout << "|  " << num << " |" << endl;
+	cout << "|" << num << "             |" << endl;
 	cout << "|                |" << endl;
 	cout << "|________________|" << endl;
 

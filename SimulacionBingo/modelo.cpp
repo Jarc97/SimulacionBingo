@@ -6,8 +6,11 @@ modelo::modelo()
 {
 	simula = new jugada(0,0,0);
 	bingo = false;
+    this->Jganador= NULL;
+	this->cartonGanador= NULL;
 }
 void modelo:: iniciarJugada() {
+	system("cls");
 	int cantJ = 0, cantMax=0;
 	int tipoJ = 0;
 	cout << "Datos Iniciales " << endl;
@@ -86,6 +89,8 @@ bool modelo::ganador() {
 			if (simula->obtenerJugadores()[i]->getCartones()[k]->GetJuegoCompletado() == true) {
 				op = true;
 				simula->setGanador(simula->obtenerJugadores()[i]);
+				this->Jganador = simula->obtenerJugadores()[i];
+				this->cartonGanador = simula->obtenerJugadores()[i]->getCartones()[k];
 			}
 		}
 
@@ -98,11 +103,11 @@ void modelo::iniciarSimulacion() {
 	int esfera[75];
 	int numero = 0;
 	int lop = 0;
-	int cant = 0;
 	for (int k = 1; k <= 75;k++) {
 		esfera[k] = k;
 	}
 	while (ganador()==false) {
+		system("cls");
 		int numeroObtenido = comienzo + rand() % (fin+ 1 - comienzo);
 		numero = esfera[numeroObtenido];
 		do {
@@ -111,18 +116,23 @@ void modelo::iniciarSimulacion() {
 		} while (numero == 0);
 		esfera[numeroObtenido] = 0;
 
+		
 		simula->buscar(numero);
-		/*if () {
-			bingo = true;
-		}*/
-		cant++;
-		for (int k = 1; k <= 75; k++) {
-			cout<< k<<" "<< esfera[k] << endl;
-		}
+		vista::ventanaBuscNumero(numero);
+		pilaNumeros.Poner(numero);
+		
 		cout << simula->toString() << endl;
 		system("pause");
 	}
-
+	
+	if (ganador() == true) {
+		system("cls");
+		vista::mostrarGanador(this->Jganador->getNumero(), this->cartonGanador->toString(),pilaNumeros.toString());
+		cout << "BINGO !!" << endl;
+		system("pause");
+		procesoMenuPrincipal();
+		
+	}
 }
 
 

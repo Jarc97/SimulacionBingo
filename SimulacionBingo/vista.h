@@ -10,7 +10,7 @@ public:
 	static void ventanaFinal();
 	static void ventanaBuscNumero(int num);
 	static void serJugador(int nom);
-	static void mostrarGanador(int,string);
+	static void mostrarGanador(int,string, string);
 	vista();
 	~vista();
 };

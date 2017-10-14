@@ -8,10 +8,12 @@
 #include <stdlib.h>
 using namespace std;
 class modelo
-{
+{ 
 	Pila <int> pilaNumeros;
 	jugada* simula;
 	bool bingo;
+	jugador* Jganador;
+	Matriz* cartonGanador;
 public:
 	void iniciarJugada();
 	void verJugadas();

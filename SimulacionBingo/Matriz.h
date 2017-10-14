@@ -10,6 +10,7 @@ protected:
 	int columnas, filas;
 	int tipoJuego;
 	bool juegoCompletado;
+	int marcados;
 public:
 	bool GetJuegoCompletado();
 	void SetJuegoCompletado(bool);
