@@ -16,10 +16,9 @@ jugador::jugador(int n, int can)
 	}
 
 }
-void jugador::buscar(int num) {
-	for (int i = 0; i < cantCartones; i++) {
-		cartones[i]->busqueda(num);
-	}
+
+Matriz* jugador:: obtenerCarton(int op) {
+	return cartones[op];
 }
 void jugador::setTipoJ(int c) {
 	for (int i = 0; i < cantCartones; i++) {
@@ -27,21 +26,27 @@ void jugador::setTipoJ(int c) {
 
 	}
 }
-bool jugador::esGanador() {
+bool jugador::existeGanador() {
 	bool op = false;
 	for (int i = 0; i < cantCartones; i++) {
-		if (cartones[i]->getCompleto()==true) {
+		if (cartones[i]->GetJuegoCompletado() == true) {
 			op = true;
 		}
-		op = false;
 	}
-	return op;
+		return op;
 }
 jugador::jugador() {}
 
 jugador::~jugador()
 {
 }
+
+void jugador::buscar(int num) {
+	for (int i = 0; i < cantCartones;i++) {
+		cartones[i]->busqueda(num);
+	}
+}
+
 Matriz** jugador:: getCartones() {
 	return cartones;
 }
@@ -53,9 +58,11 @@ void jugador::setNumero(int n){
 int jugador::getNumero() {
 	return numeroJugador;
 }
+int jugador::getCantCartones() {
+	return cantCartones;
+}
 string jugador::toString() {
 	stringstream s;
-	s << " Jugador Numero :" << numeroJugador << endl;
 	s << cantCartones << " cartones " << endl;
 	for (int i = 0; i < cantCartones;i++) {
 		s << cartones[i]->toString() << endl;

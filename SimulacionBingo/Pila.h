@@ -9,17 +9,18 @@ private:
 	T* vec;
 	int limite;
 public:
-	Pila(int nelem = 1500); //Constructor
+	Pila(int nelem = 75); //Constructor
 	bool Poner(const T& valorInsertado);
 	bool Sacar(T& valorExtraido);
 	bool Vacia();
 	bool Llena();
+	string toString();
 	T& Top();
 	~Pila();
 };
 
 template<class T>
-Pila<T>::Pila(int nelem= 1500) {
+Pila<T>::Pila(int nelem= 75) {
 	nelementos = nelem;
 	limite = -1;
 	vec = new T[nelementos];
@@ -60,7 +61,14 @@ T& Pila<T>::Top() {
 	if (limite != -1 && limite < nelementos)
 		return vec[limite];
 }
-
+template<class T>
+string Pila<T>::toString() {
+	stringstream s;
+	for (int i = 0; i < nelementos; i++) {
+		s << vec[i] << endl;
+	}
+	return s.str();
+}
 template<class T>
 Pila<T>::~Pila() {
 }

@@ -2,6 +2,7 @@
 #include "jugada.h"
 #include "vista.h"
 #include "Pila.h"
+#include "Matriz.h"
 #include <stdio.h>
 #include <conio.h>
 #include <stdlib.h>
@@ -12,9 +13,10 @@ class modelo
 	jugada* simula;
 	bool bingo;
 public:
-	bool existeGanador();
 	void iniciarJugada();
 	void verJugadas();
+	int serJugador();
+	bool ganador();
 	void iniciarSimulacion();
 	void procesoInicio();
 	int tipoJuego();

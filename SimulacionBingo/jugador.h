@@ -11,12 +11,14 @@ private:
 	int cantCartones;
    Matriz **cartones;
 public:
-	void buscar(int num);
-	bool esGanador();
+	bool existeGanador();
 	void setNumero(int n);
 	Matriz** getCartones();
+	int getCantCartones();
 	void setTipoJ(int );
+	Matriz* obtenerCarton(int op);
 	int getNumero();
+	void buscar(int num);
 	string toString();
 	jugador(int n,int can);
 	jugador();

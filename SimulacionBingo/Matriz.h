@@ -9,9 +9,10 @@ protected:
 	NodoMulti *origen;
 	int columnas, filas;
 	int tipoJuego;
-	int marcados;
-	bool completo;
+	bool juegoCompletado;
 public:
+	bool GetJuegoCompletado();
+	void SetJuegoCompletado(bool);
 	void llenar();
 	Matriz();
 	Matriz(int columnas, int filas);
@@ -27,8 +28,7 @@ public:
 	string toString();
 
 	///-------------------------------
-	bool getCompleto();
-	void setCompleto(bool);
+	
 	void setTipoJuego(int j);
 	void busqueda(int num);
 	void buscarSegunHorizontal(int num);

@@ -14,12 +14,17 @@ private:
 	jugador **vectorJugadores;
 	jugador* ganador;
 public:
+	bool hayGanador();
+	jugador** obtenerJugadores();
 	string toString();
+	void setTipoCarton(int tipoJ);
 	void buscar(int num);
+	jugador* obtenerJugador(int p);
+	int obtenerCantJugadores();
 	jugada(int cantJ, int cantC, int tipoJ);
 	jugador* getGanador();
-	bool hayGanador();
 	void setGanador(jugador*);
+	Matriz* cartonGanador(Matriz* op);
 	~jugada();
 };
 

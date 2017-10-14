@@ -17,13 +17,33 @@ int vista::menuPrincipal() {
 	cout << "==================================" << endl;
 	cout << "Digite la opcion: " << endl;
 	cin >> opc;
-	while (opc < 1 || opc>3)
+	while (opc < 1 || opc > 3)
 	{
 		cout << "Error" << endl;
 		cout << "Digite un valor entre 1-3" << endl;
 		opc = menuPrincipal();
 	}
 	return opc;
+}
+void vista::mostrarGanador(int numeroG, string carton) {
+	cout << "Ganador" << endl;
+	cout << numeroG << endl<<endl;
+
+	cout << "Carton Ganador" << endl;
+	cout << carton << endl;
+}
+void vista::serJugador(int n) {
+	cout << "==========================" << endl;
+	cout << "---Jugador Numero"<<n<<"--" << endl;
+}
+
+void vista::ventanaBuscNumero(int num) {
+	cout << "-------------------------------------" << endl;
+	cout << " ________________" << endl;
+	cout << "|  " << num << " |" << endl;
+	cout << "|                |" << endl;
+	cout << "|________________|" << endl;
+
 }
 void vista::ventanaFinal()
 {
