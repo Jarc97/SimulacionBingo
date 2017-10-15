@@ -198,11 +198,11 @@ void Matriz::buscarSegunHorizontal(int num) {
 		for (int j = 0; j < columnas; j++) {
 			if ((*this)(i, j)->getValor() == num) {
 				(*this)(i, j)->setMarcado(true);
-				marcados++;
+				marcados;
 			}
 		}
 	}
-	if (marcados == 25) {
+	if (marcados == 5) {
 		this->SetJuegoCompletado(true);
 	}
 }

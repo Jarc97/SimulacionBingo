@@ -1,6 +1,6 @@
 #pragma once
 
-#include "NodoMulti.h";
+#include "NodoMulti.h"
 
 using namespace std;
 class Numero;
