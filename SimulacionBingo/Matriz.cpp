@@ -193,7 +193,12 @@ void Matriz::setTipoJuego(int j) {
 	tipoJuego = j;
 }
 void Matriz::buscarSegunHorizontal(int num) {
-	
+	bool columna0= ((*this)(0, 0)->getMarcado()==true && (*this)(1, 0)->getMarcado() == true && (*this)(2, 0)->getMarcado() == true && (*this)(3, 0)->getMarcado() == true && (*this)(4, 0)->getMarcado() == true) ;
+	bool columna1 = ((*this)(0, 1)->getMarcado() == true && (*this)(1, 1)->getMarcado() == true && (*this)(2, 1)->getMarcado() == true && (*this)(3, 1)->getMarcado() == true && (*this)(4, 1)->getMarcado() == true);
+	bool columna2 = ((*this)(0, 2)->getMarcado() == true && (*this)(1, 2)->getMarcado() == true && (*this)(2, 2)->getMarcado() == true && (*this)(3, 2)->getMarcado() == true && (*this)(4, 2)->getMarcado() == true);
+	bool columna3 = ((*this)(0, 1)->getMarcado() == true && (*this)(1, 3)->getMarcado() == true && (*this)(2, 3)->getMarcado() == true && (*this)(3, 3)->getMarcado() == true && (*this)(4, 3)->getMarcado() == true);
+	bool columna4 = ((*this)(0, 1)->getMarcado() == true && (*this)(1, 4)->getMarcado() == true && (*this)(2, 4)->getMarcado() == true && (*this)(3, 4)->getMarcado() == true && (*this)(4, 4)->getMarcado() == true);
+
 	for (int i = 0; i < filas; i++) {
 		for (int j = 0; j < columnas; j++) {
 			if ((*this)(i, j)->getValor() == num) {
@@ -202,9 +207,10 @@ void Matriz::buscarSegunHorizontal(int num) {
 			}
 		}
 	}
-	if (marcados == 5) {
+	if (columna0==true || columna1 == true ||columna2 == true  || columna3 == true ||columna4 == true) {
 		this->SetJuegoCompletado(true);
 	}
+	
 }
 bool Matriz::GetJuegoCompletado() {
 	return juegoCompletado;
@@ -213,6 +219,11 @@ void Matriz::SetJuegoCompletado(bool m) {
 	juegoCompletado = m;
 }
 void Matriz::buscarSegunVertical(int num) {
+	bool fila0 = ((*this)(0, 0)->getMarcado() == true && (*this)(0, 1)->getMarcado() == true && (*this)(0, 2)->getMarcado() == true && (*this)(0, 3)->getMarcado() == true && (*this)(0, 4)->getMarcado() == true);
+	bool fila1 = ((*this)(1, 0)->getMarcado() == true && (*this)(1, 1)->getMarcado() == true && (*this)(1, 2)->getMarcado() == true && (*this)(1, 3)->getMarcado() == true && (*this)(1, 4)->getMarcado() == true);
+	bool fila2 = ((*this)(2, 0)->getMarcado() == true && (*this)(2, 1)->getMarcado() == true && (*this)(2, 2)->getMarcado() == true && (*this)(2, 3)->getMarcado() == true && (*this)(2, 4)->getMarcado() == true);
+	bool fila3 = ((*this)(3, 0)->getMarcado() == true && (*this)(3, 1)->getMarcado() == true && (*this)(3, 2)->getMarcado() == true && (*this)(3, 3)->getMarcado() == true && (*this)(3, 4)->getMarcado() == true);
+	bool fila4 = ((*this)(4, 0)->getMarcado() == true && (*this)(4, 1)->getMarcado() == true && (*this)(4, 2)->getMarcado() == true && (*this)(4, 3)->getMarcado() == true && (*this)(4, 4)->getMarcado() == true);
 	for (int i = 0; i < filas; i++) {
 		for (int j = 0; j < columnas; j++) {
 			if ((*this)(i, j)->getValor() == num) {
@@ -220,6 +231,9 @@ void Matriz::buscarSegunVertical(int num) {
 				marcados++;
 			}
 		}
+	}
+	if (fila0==true || fila1==true || fila2==true || fila3==true || fila4== true) {
+		this->SetJuegoCompletado(true);
 	}
 	
 }
