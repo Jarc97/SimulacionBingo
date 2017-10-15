@@ -5,13 +5,11 @@
 #include "Matriz.h"
 #include <stdio.h>
 #include <conio.h>
-#include "Lista.h"
 #include <stdlib.h>
 using namespace std;
 class modelo
 { 
 	Pila <int>* pilaNumeros;
-	Lista <jugada>* listaJugadas;
 	jugada* simula;
 	bool bingo;
 	jugador* Jganador;

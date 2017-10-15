@@ -11,16 +11,15 @@ int vista::menuPrincipal() {
 	cout << "==================================" << endl;
 	cout << "============BIENVENIDO============" << endl;
 	cout << "==================================" << endl;
-	cout << "1- Jugadas " << endl;
-	cout << "2- Jugar " << endl;
-	cout << "3- Salir" << endl;
+	cout << "1- Jugar " << endl;
+	cout << "2- Salir" << endl;
 	cout << "==================================" << endl;
 	cout << "Digite la opcion: " << endl;
 	cin >> opc;
-	while (opc < 1 || opc > 3)
+	while (opc < 1 || opc > 2)
 	{
 		cout << "Error" << endl;
-		cout << "Digite un valor entre 1-3" << endl;
+		cout << "Digite un valor entre 1-2" << endl;
 		opc = menuPrincipal();
 	}
 	return opc;

@@ -5,7 +5,6 @@
 modelo::modelo()
 {
 	pilaNumeros = new Pila<int>();
-	listaJugadas = new Lista<jugada>;
 	simula = new jugada(0,0,0);
 	bingo = false;
     this->Jganador= NULL;
@@ -22,14 +21,10 @@ void modelo:: iniciarJugada() {
 	cin >> cantMax;
 	tipoJ = vista::tipoJuego();
 	simula = new jugada(cantJ,cantMax,tipoJ);
-	listaJugadas->agregar(simula);
 	iniciarSimulacion();
 }
 
 
-void modelo::verJugadas() {
-	cout << listaJugadas->toString() << endl;
-}
 void modelo::procesoMenuPrincipal() {
 	system("cls");
 		int opc = 0;
@@ -39,16 +34,13 @@ void modelo::procesoMenuPrincipal() {
 			switch (opc)
 			{
 			case 1:
-				verJugadas();
-				break;
-			case 2:
 				iniciarJugada();
 				break;
-			case 3: vista::ventanaFinal();
+			case 2: vista::ventanaFinal();
 				break;
 
 			}
-		} while (opc != 3);
+		} while (opc != 2);
 		
 	
 }
