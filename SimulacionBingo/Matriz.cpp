@@ -92,6 +92,7 @@ bool Matriz::operator()(int columna, int fila, int num) {
 
 	// modificar el dato
 	actual->getDato()->setValor(num);
+	return true;
 }
 void Matriz::llenarPorFila(int fil, int inicio, int final) {
 	int bing[5];

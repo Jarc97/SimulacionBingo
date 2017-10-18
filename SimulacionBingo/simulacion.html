@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simulacion Bingo</title>
+
+    <style>
+        table, th, td {
+            border: 2px solid black;
+            border-collapse: collapse;
+        }
+
+        #cartonGanador {
+            opacity: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Parametros iniciales:</h2>
+    <p id="cantUsuarios">Cantidad de usuarios: </p>
+    <p id="cantCartones">Cantidad de cartones por usuario: </p>
+    <br>
+    <h2 id="ronda">Ronda: </h2>
+    <table id="pila">
+        <tr>
+            <td>PILA</td>
+        </tr>
+    </table>
+    <h2 id="progreso">Simulacion en progreso...</h2>
+    <table id="cartonGanador">
+        <tr>
+            <td>B</td>
+            <td>I</td>
+            <td>N</td>
+            <td>G</td>
+            <td>O</td>
+        </tr>
+    </table>
+
+    <!-- <button onclick="requestData()">Request Data</button> -->
+    <!-- <button onclick="testFeature()">Test Feature</button> -->
+
+    <script>
+        var simulacionTerminada = false;
+        console.log("Hola");
+        var adsf = setInterval(requestData, 100);
+        var xhr = new XMLHttpRequest(); // Usual mix-and-matching for x-browser omitted for brevity
+        var response = "";
+        var jsonObject;
+        var ultimoNumero = 0;
+
+        // Funcion callback para actualizar la pagina con AJAX
+        xhr.onreadystatechange = function () {
+            response = this.responseText;
+            if (response && simulacionTerminada === false) {
+                console.log("Response: " + this.responseText);
+                // jsonObject = JSON.parse(response);
+                //console.log(jsonObject.numPila);
+                //////document.getElementById("text").innerHTML = this.responseText;
+                //jsonObject = JSON.parse(this.responseText);
+                updateStack(this.responseText);
+            } else {
+                console.log("Response is empty");
+                
+            }
+            if (simulacionTerminada === true) {
+                document.getElementById("progreso").innerHTML = "Simulacion Terminada! Vea la consola para ver el carton ganador!";
+            }
+        }
+
+        function requestData() {
+            /*
+            var xhttp = new XMLHttpRequest();
+            xhttp.open("GET", "http://localhost:9002", true);
+            xhttp.send();
+            console.log(xhttp.responseText);
+            */
+            
+            xhr.open('GET', 'http://localhost:9001', true);
+            xhr.send(null);
+        }
+
+        function updateStack(response_str) {
+            console.log("entra a update stack")
+            
+            var json = JSON.parse(response_str);
+            
+
+
+            if (json.end == 1) {
+                simulacionTerminada = true;
+            }
+
+            document.getElementById("cantUsuarios").innerHTML = "Cantidad de usuarios: " + json.cantJ;
+            document.getElementById("cantCartones").innerHTML = "Cantidad de cartones por usuario: " + json.cantMax;
+
+            if (ultimoNumero !== json.ult) {
+                var table = document.getElementById("pila");
+                var row = table.insertRow(0);
+                var cell1 = row.insertCell(0);
+                cell1.innerHTML = json.ult;
+                ultimoNumero = json.ult;
+            }
+        }
+
+        var counter = 0;
+
+        function testFeature() {
+            var strtest = '{"asdf":"qewrty"}';
+            var js = JSON.parse(strtest);
+            console.log(js.asdf);
+        }
+    </script>
+</body>
+</html>

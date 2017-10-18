@@ -74,7 +74,12 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>C:\Users\Julio\Documents\Visual Studio 2015\Projects\BoostServer\boost\boost_asio_subset;C:\Users\Julio\Downloads\boost_1_65_1</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions);_WIN32_WINNT=0x0501</PreprocessorDefinitions>
     </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>C:\Users\Julio\Documents\Visual Studio 2015\Projects\BoostServer\boost</AdditionalLibraryDirectories>
+    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -121,6 +126,7 @@
     <ClInclude Include="vista.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="boost_async_server.h" />
     <ClCompile Include="jugador.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Matriz.cpp" />

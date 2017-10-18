@@ -1,7 +1,5 @@
 #include "modelo.h"
 
-
-
 modelo::modelo()
 {
 	pilaNumeros = new Pila<int>();
@@ -9,19 +7,56 @@ modelo::modelo()
 	bingo = false;
     this->Jganador= NULL;
 	this->cartonGanador= NULL;
+	ultimoNumero = 0;
 }
 void modelo:: iniciarJugada() {
 	system("cls");
 	int cantJ = 0, cantMax=0;
 	int tipoJ = 0;
+	// int ultimoNum = 0;
+	// ultimoNumero = &ultimoNum;
 	cout << "Datos Iniciales " << endl;
 	cout << "Digite la cantidad de jugadores ";
 	cin >> cantJ;
 	cout << "Digite la cantidad maxima de cartones por jugador ";
 	cin >> cantMax;
 	tipoJ = vista::tipoJuego();
-	simula = new jugada(cantJ,cantMax,tipoJ);
+
+	// Variables "globales" para los threads de la simulacion y servidor.
+	// Se pasan por referencia a ambos para su comunicacion.
+	// bool simulacionTerminada = false;
+
+	// Dividir la ejecucion de la simulacion y el servidor
+	thread thread_simulacion(&modelo::simulacion, this, cantJ, cantMax, tipoJ, std::ref(bingo));
+	thread thread_servidor(&modelo::servidor, this, &bingo, &cantJ, &cantMax, &ultimoNumero);
+	thread_simulacion.join();
+	thread_servidor.join();
+	cout << "Termina Simulacion" << endl;
+	system("pause");
+}
+
+
+void modelo::simulacion(int cantJ, int cantMax, int tipoJ, bool &simTerminada) {
+	simula = new jugada(cantJ, cantMax, tipoJ);
 	iniciarSimulacion();
+	// simTerminada = true;
+}
+
+void modelo::servidor(bool *simTerminada, int *cantJ, int *cantMax, int *ultimoNum) {
+	// Abrir una ventana nueva del buscador
+	// ShellExecute(NULL, "open", "http://localhost:9001", NULL, NULL, SW_SHOWNORMAL);
+	system("start http://localhost:9001");
+
+	try
+	{
+		boost::asio::io_service io_service;
+		tcp_server server(io_service, simTerminada, cantJ, cantMax, ultimoNum);
+		io_service.run();
+	}
+	catch (std::exception& e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
 }
 
 
@@ -72,13 +107,13 @@ bool modelo::ganador() {
 	return op;
 }
 void modelo::iniciarSimulacion() {
-	int comienzo = 1;
-	int fin = 75;
+	int comienzo = 0;
+	int fin = 74;
 	int esfera[75];
 	int numero = 0;
 	int lop = 0;
 	for (int k = 1; k <= 75;k++) {
-		esfera[k] = k;
+		esfera[k-1] = k;
 	}
 	while (ganador()==false) {
 		system("cls");
@@ -90,17 +125,22 @@ void modelo::iniciarSimulacion() {
 		} while (numero == 0);
 		esfera[numeroObtenido] = 0;
 
+		///////////
+		ultimoNumero = numero;
+		//////////
 		
 		simula->buscar(numero);
 		vista::ventanaBuscNumero(numero);
 		pilaNumeros->Poner(numero);
 		
 		cout << simula->toString() << endl;
-		system("pause");
+		// VELOCIDAD DE GENERACION DE NUMEROS
+		Sleep(2000);
 		if (ganador() == true) {
 			system("cls");
 			cout << endl << endl << endl << endl << endl << endl;
 			cout << "                 ¡ BINGO !                             " << endl;
+			bingo = true;
 			system("pause");
 		}
 	}
@@ -110,8 +150,8 @@ void modelo::iniciarSimulacion() {
 		vista::mostrarGanador(this->Jganador->getNumero(), this->cartonGanador->toString(),pilaNumeros->toString());
 		cout << "BINGO !!" << endl;
 		system("pause");
-		procesoMenuPrincipal();
-		
+		//procesoMenuPrincipal();
+		return;
 	}
 }
 
